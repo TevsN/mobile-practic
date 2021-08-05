@@ -8,16 +8,21 @@ class Phone {
   }
 }
 
+const modelPhones = ['Samsung', 'Apple', 'Honor', 'Xiaomi'];
+const colorPhones = ['pink', 'red', 'blue', "white"];
+
+
 function getPhones(amount) {
   const newPhones = [];
 
   for (let i = 0; i < amount; i++) {
+    // debugger;
     newPhones.push(
       new Phone(
         `Model ${i}`,
-        "Samsingus",
-        this.getRandomInt(2500, 25000),
-        "pink",
+        modelPhones[getRandomInt(0, modelPhones.length)],
+        getRandomInt(2500, 25000),                        //advanced 2
+        colorPhones[getRandomInt(0, modelPhones.length)],                                   
         Math.random() >= 0.5
       )
     );
@@ -57,7 +62,8 @@ return amount;
 
 function getPhonesInfo (phonesArray) {
     const callback = function (phone) {
-        console.log(`${phone.manufacture} ${phone.model} price: ${phone.price}$ in stock: ${phone.inStock}`)
+      const phonesStockMassage = phone.inStock ? 'в наличии' : 'нет в наличии';
+        console.log(`${phone.manufacture} ${phone.model} price: ${phone.price}$ in stock: ${phonesStockMassage}`)
     }
     phonesArray.forEach(callback);
 }
@@ -78,3 +84,11 @@ const phonesDiscount = phonesInStock.map(function(phone) {
 });
 
 // advanced
+
+const sortedPhones = phones.sort(function(firstPhone, secondPhone){
+  if(firstPhone.price < secondPhone.price) {
+    return -1;
+  }
+})
+
+// 2
